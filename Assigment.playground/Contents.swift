@@ -5,7 +5,7 @@ import Foundation
 func factorial(num: Int) -> Int {
     var fact = 1
     for i in 1...num {
-        fact = fact * i
+        fact *= i
     }
     return fact
 }
@@ -20,7 +20,7 @@ func generateFibonacci(n: Int) -> [Int] {
     var fibonacciNumbers: [Int] = [0, 1]
     
     for i in 2..<n {
-        let nextNumber = fibonacciNumbers[i-1] + fibonacciNumbers[i-2]
+        let nextNumber = fibonacciNumbers[i - 1] + fibonacciNumbers[i - 2]
         fibonacciNumbers.append(nextNumber)
     }
     
@@ -55,7 +55,7 @@ print(infoAboutWord, "\n")
 func square(numbers: [Int]) -> [Int] {
     var newNumbers: [Int] = []
     
-    for i in 1...numbers.count {
+    for i in numbers {
         newNumbers.append(i*i)
     }
     
@@ -89,15 +89,15 @@ print(wordCounts, "\n")
 
 var binaryNumber: (Int) -> String = { number in
     var binary = ""
-        var n = number
-        
-        while n > 0 {
-            let bit = n % 2
-            binary = String(bit) + binary
-            n /= 2
-        }
-        
-        return binary.isEmpty ? "0" : binary
+    var n = number
+    
+    while n > 0 {
+        let bit = n % 2
+        binary = String(bit) + binary
+        n /= 2
+    }
+    
+    return binary.isEmpty ? "0" : binary
 }
 
 let decimalNumber = 42
@@ -109,14 +109,12 @@ print(binaryString, "\n")
 
 let filterOddNumbers: ([Int]) -> [Int] = { numbers in
     var evenNumbers: [Int] = []
-        
-        for number in numbers {
-            if number % 2 == 0 {
-                evenNumbers.append(number)
-            }
-        }
-        
-        return evenNumbers
+    
+    for number in numbers where number % 2 == 0 {
+        evenNumbers.append(number)
+    }
+    
+    return evenNumbers
 }
 
 let scores = [1, 2, 3, 4, 5, 6, 7, 8, 9]
@@ -128,10 +126,10 @@ print(evenNumbers, "\n")
 let prices = [1, 2, 3, 4, 5]
 
 let multiplyBy10: ([Int]) -> [Int] = { prices in
-    return prices.map { $0 * 10 }
+    prices.map { $0 * 10 }
 }
 
-let multipliedNumbers = multiplyBy10(numbers)
+let multipliedNumbers = multiplyBy10(prices)
 print(multipliedNumbers, "\n")
 
 // მეცხრე
@@ -153,7 +151,7 @@ calculateSumAfterDelay(temperatures) { result in
 // მეათე
 
 func filterOddNumbers(_ stringArray: [String]) -> [String] {
-    return stringArray
+    stringArray
         .compactMap { Int($0) }
         .reduce(into: []) { result, number in
             if number % 2 != 0 {
